@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div id="homenavbar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+             <a class="navbar-brand " href="#">Sistema de gestão RH</a>
+        <div class="collapse navbar-collapse" id="textoNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(Página atual)</span></a>
+                </li>
+                <li class="nav-item">
+                    {% if usuario.funcionario.empresa %}
+                        <a class="nav-link" href="{% url 'edit_empresa' usuario.funcionario.empresa.id  %}"> Editar empresa </a>
+                     {% else %}
+                        <a class="nav-link" href="{% url 'create_empresa' %}"> Criar empresa </a>
+                     {% endif %}
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'list_funcionario' %}">Gerenciar funcionários</a>
+                </li>
+            </ul>
+            <span class="navbar-text text-white">
+              Olá,{{ usuario.funcionario.nome }}
+            </span>
+            <button class="btn btn-light offset-1"> <a href="{% url 'logout' %}">Sair </a></button>
+        </div>
+        </nav>
+    </div>
+    <div class="sys_content">
+        <div class="row" style="padding-left: 30px">
+                <h1>Funcionários</h1>
+                <a class="text-success" href="{% url 'create_funcionario' %}"><i class="fas fa-plus"></i></a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Departamento(s)</th>
+                    <th scope="col"> # </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for funcionario in object_list %}
+                    <tr>
+                        <td>{{ funcionario.nome }} </td>
+                        <td>{{ funcionario.user.email }}</td>
+                        {% if funcionario.departamentos.all  %}
+                            <td>
+                                <ul>
+                                    {% for departamento in funcionario.departamentos.all %}
+                                        <li>{{ departamento.nome }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        {% else %}
+                            <td>Ainda não há departamento cadastrado</td>
+                        {% endif %}
+                        <td>
+                            <a href="{% url 'update_funcionario' funcionario.id %}"><i class="fas fa-edit"></i></a> |
+                            <a href="{% url 'delete_funcionario' funcionario.id %}"><i class="fas fa-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

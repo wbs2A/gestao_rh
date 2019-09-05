@@ -1,0 +1,28 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-4.3.1/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link href="{% static 'contrib/fontawesome/css/fontawesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'contrib/fontawesome/css/brands.min.css' %}" rel="stylesheet">
+    <link href="{% static 'contrib/fontawesome/css/solid.min.css' %}" rel="stylesheet">
+    <title>{% block title %}    {% endblock %}</title>
+  </head>
+  <body>
+    {% block main %}
+    {% endblock %}
+
+    <footer  class="page-footer font-small blue fixed-bottom">
+        {% block footer %}
+        {% endblock %}
+    </footer>
+    <script src="{% static 'js/jquery/slim/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/ajax/popper.min.js' %}"></script>
+    <script src="{% static 'css/bootstrap-4.3.1/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'contrib/fontawesome/js/fontawesome.min.js' %}"></script>
+  </body>
+</html>

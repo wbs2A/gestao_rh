@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div id="homenavbar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+             <a class="navbar-brand " href="#">Sistema de gestão RH</a>
+        <div class="collapse navbar-collapse" id="textoNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
+                </li>
+                <li class="nav-item">
+                    {% if usuario.funcionario.empresa %}
+                        <a class="nav-link" href="{% url 'edit_empresa' usuario.funcionario.empresa.id  %}"> Editar empresa </a>
+                     {% else %}
+                        <a class="nav-link" href="{% url 'create_empresa' %}"> Criar empresa </a>
+                     {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'list_funcionario' %}">Gerenciar funcionários</a>
+                </li>
+            </ul>
+            <span class="navbar-text text-white">
+              Olá,{{ usuario.funcionario.nome }}
+            </span>
+            <button class="btn btn-light offset-1"> <a href="{% url 'logout' %}">Sair </a></button>
+        </div>
+        </nav>
+    </div>
+    <div class="row sys_content">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Notícias da Empresa {{ usuario.funcionario.empresa.nome }}
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>{% now "jS F Y H:i" %} Reunião para o planejamento</li>
+                        <li> Batemos a meta para o mês de agosto</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Avisos
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>{% now "jS F Y H:i" %} Hoje o almoço é fora</li>
+                        <li> Wilson está de atestado até o dia 16/09</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Indicadores
+                </div>
+                <div class="card-body">
+                    <div class="bg-warning">Ainda estamos trabalhando nisso.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock     %}
+
+{% block footer %}
+  <div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <ul style="list-style: none">
+                <li><a style="text-decoration: none;" href="/admin">Dashboard</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-copyright text-center py-3">Todos os direitos reservados a
+        <a class="text-success"> Wesley Barbosa</a>
+    </div>
+  </div>
+{% endblock %}
