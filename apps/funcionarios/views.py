@@ -12,6 +12,7 @@ class FuncionariosList(ListView):
         empresa_logada = self.request.user.funcionario.empresa
         return Funcionario.objects.filter(empresa=empresa_logada)
 
+
 class FuncionarioEdit(UpdateView):
     model = Funcionario
     fields = ['nome', 'departamentos']
@@ -30,5 +31,4 @@ class FuncionarioCreate(CreateView):
         funcionario_obj.user = User.objects.create(username=_username)
         funcionario_obj.save()
         return super(FuncionarioCreate, self).form_valid(form)
-
 

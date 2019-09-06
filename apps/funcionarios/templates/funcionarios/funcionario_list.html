@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+Funcionários
+{% endblock %}
+
 {% block main %}
     <div id="homenavbar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
@@ -19,6 +23,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'list_funcionario' %}">Gerenciar funcionários</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'list_departamentos' %}">Gerenciar Departamentos</a>
+                </li>
             </ul>
             <span class="navbar-text text-white">
               Olá,{{ usuario.funcionario.nome }}
@@ -30,7 +37,7 @@
     <div class="sys_content">
         <div class="row" style="padding-left: 30px">
                 <h1>Funcionários</h1>
-                <a class="text-success" href="{% url 'create_funcionario' %}"><i class="fas fa-plus"></i></a>
+                    <a class="text-success" href="{% url 'create_funcionario' %}"><i class="fas fa-plus"></i></a>
         </div>
         <table class="table table-striped">
             <thead>
