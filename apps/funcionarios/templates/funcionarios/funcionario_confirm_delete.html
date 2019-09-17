@@ -31,7 +31,7 @@
         <form method="post">
             {% csrf_token %}
             <h1> Você confirma a exclusão de '{{ obj }}'?</h1>
-            {{ form }}
+            {{ form|bootstrap }}
             <button class="btn btn-danger" type="submit">Confirmo</button>
         </form>
     </div>

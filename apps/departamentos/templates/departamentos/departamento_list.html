@@ -33,8 +33,37 @@
         </nav>
     </div>
     <div class="sys_content">
-    {% for departamento in object_list %}
-        {{ departamento }}
-    {% endfor %}
+        <div class="row" style="padding-left: 30px">
+                <h1>Departamentos</h1>
+                    <a class="text-success" href="{% url 'create_departamentos' %}"><i class="fas fa-plus"></i></a>
+        </div>
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th scope="col">Departamentos</th>
+                    <th scope="col">Funcionários</th>
+                    <th scope="col">Indicadores</th>
+                    <th scope="col">#</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for departamento in object_list %}
+                    <tr>
+                        <td>{{ departamento.nome }} </td>
+                        <td>{{ departamento.empresa}}</td>
+                        <td>
+                            <div class="col">
+                              <div class="chart-pie pt-4">
+                                    <canvas id="myPieChart"></canvas>
+                                  </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="{% url 'update_departamentos' departamento.id %}"><i class="fas fa-edit"></i></a> |
+                            <a href="{% url 'delete_departamentos' departamento.id %}"><i class="fas fa-trash text-danger"></i></a>
+                        </td>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

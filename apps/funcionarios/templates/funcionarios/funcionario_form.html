@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %}
+Empresas
+{% endblock %}
 
 {% block main %}
     <div id="homenavbar">
@@ -9,15 +13,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(Página atual)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ">
                     {% if usuario.funcionario.empresa %}
                         <a class="nav-link" href="{% url 'edit_empresa' usuario.funcionario.empresa.id  %}"> Editar empresa </a>
                      {% else %}
                         <a class="nav-link" href="{% url 'create_empresa' %}"> Criar empresa </a>
                      {% endif %}
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'list_funcionario' %}">Gerenciar funcionários</a>
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'list_funcionario' %}">Gerenciar funcionários</a>
+                    <a class="nav-link" href="{% url 'list_departamentos' %}">Gerenciar Departamentos</a>
                 </li>
             </ul>
             <span class="navbar-text text-white">
@@ -28,10 +35,25 @@
         </nav>
     </div>
     <div class="sys_content">
-        <form method="post">
+        <form method="POST">
             {% csrf_token %}
-            {{ form }}
-            <button type="submit">Salvar</button>
+            {{ form|bootstrap}}
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>Documentos <a href="{% url 'insert_document' object.id %}" class="text-success"><i class="fa fa-plus"></i></a></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in object.documento_set.all %}
+                    <tr>
+                        <td><a href="{{ doc.arquivo.url }}">{{ doc }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
