@@ -31,13 +31,13 @@
                         <a class="nav-link" href="{% url 'create_empresa' %}"> Criar empresa </a>
                      {% endif %}
                 </li>
-                <li class="nav-item {% if "funcionarios" in request.resolver_match.url_name %} active {% endif %}">
+                <li class="nav-item {% if "funcionario" in request.resolver_match.url_name %} active {% endif %}">
                     <a class="nav-link" href="{% url 'list_funcionario' %}">Gerenciar funcionários</a>
                 </li>
                 <li class="nav-item {% if "departamentos" in request.resolver_match.url_name %} active {% endif %}">
                     <a class="nav-link" href="{% url 'list_departamentos' %}">Gerenciar Departamentos</a>
                 </li>
-                <li class="nav-item {% if "registrohora" in request.resolver_match.url_name %} active {% endif %}">
+                <li class="nav-item {% if "hora" in request.resolver_match.url_name %} active {% endif %}">
                     <a class="nav-link" href="{% url 'list_hora_extra' %}">Gerenciar Banco de Horas</a>
                 </li>
             </ul>
