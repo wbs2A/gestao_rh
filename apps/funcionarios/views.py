@@ -1,10 +1,12 @@
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 
 from .models import Funcionario
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
 
+@method_decorator(login_required, name='dispatch')
 class FuncionariosList(ListView):
     model = Funcionario
 
