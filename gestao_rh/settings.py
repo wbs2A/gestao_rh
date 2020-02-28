@@ -13,7 +13,7 @@ SECRET_KEY = '5419v%(chwt(qz683#vm#2#bcku=&(r7-2dh3^azba7%3c*r8z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3.135.228.105', 'localhost']
 
 
 # Application definition
@@ -46,7 +46,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'gestao_rh.urls'
-
+    
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
